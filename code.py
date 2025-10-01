@@ -58,4 +58,22 @@ st.markdown(f"""
 - La carga real promedio será de **{carga_real:.1f} entrevistas por juez**.
 """)
 
-st.info("Tip: Puedes ajustar el número de entrevistas por aspirante (k) y la carga deseada para simular distintos escenarios.")
+# Rango recomendado
+st.subheader("🎯 Rangos recomendados")
+carga_optima_min, carga_optima_max = 10, 15
+carga_aceptable_min, carga_aceptable_max = 8, 16
+
+if carga_optima_min <= carga_real <= carga_optima_max:
+    estado = "✅ Óptima"
+elif carga_aceptable_min <= carga_real <= carga_aceptable_max:
+    estado = "⚠️ Aceptable"
+else:
+    estado = "❌ Fuera de rango"
+
+st.markdown(f"""
+- **Óptima:** {carga_optima_min}–{carga_optima_max} entrevistas/juez  
+- **Aceptable:** {carga_aceptable_min}–{carga_aceptable_max} entrevistas/juez  
+- **Tu resultado actual:** {carga_real:.1f} → **{estado}**
+""")
+
+st.info("Tip: Si la carga real está fuera del rango óptimo, ajusta el número de jueces o la carga deseada.")
